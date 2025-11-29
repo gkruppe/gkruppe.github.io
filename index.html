@@ -20,7 +20,7 @@
 
 <body>
 
-    <!-- MENÚ DESPLEGABLE (OVERLAY) - Nuevo bloque -->
+    <!-- MENÚ DESPLEGABLE (OVERLAY) -->
     <div id="menu-overlay" class="menu-overlay">
         <button id="close-menu-btn" class="close-btn">CLOSE</button>
         <nav class="menu-content">
@@ -32,27 +32,43 @@
         </nav>
     </div>
 
+    <!-- CART DESPLEGABLE (OVERLAY) - NUEVO -->
+    <div id="cart-overlay" class="cart-overlay">
+        <button id="close-cart-btn" class="close-cart-btn">CLOSE</button>
+        <div class="cart-content">
+            <div class="cart-header">YOUR CART</div>
+            <div class="cart-items">
+                <p>YOUR CART IS EMPTY</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>TOTAL</span>
+                    <span>€0.00</span>
+                </div>
+                <button class="checkout-btn">CHECKOUT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HERO -->
     <header class="brand-hero">
         <img src="src/assets/images/ELIPSE.png" alt="PECATO GIANT LOGO" class="huge-logo">
     </header>
 
+    <!-- CENTINELA -->
     <div id="sticky-sentinel"></div>
 
+    <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="nav-item left">
-            <!-- AÑADIDO ID: id="open-menu-btn" -->
+            <!-- Botón MENU con ID -->
             <button id="open-menu-btn" class="nav-btn menu-btn">MENU</button>
         </div>
 
         <div class="nav-center">
+            <!-- TEXTO MARQUEE (8 copias para loop fluido) -->
             <div class="marquee-container">
                 <div class="marquee-content">
-                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
-                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
-                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
-                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
-                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
-                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
                     <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
                     <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
                     <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
@@ -64,25 +80,31 @@
                 </div>
             </div>
 
+            <!-- LOGO MINI -->
             <img src="src/assets/images/ELIPSE.png" alt="Logo Mini" class="logo-mini">
         </div>
 
         <div class="nav-item right">
-            <button class="nav-btn cart-btn">CART</button>
+            <!-- Botón CART con ID -->
+            <button id="open-cart-btn" class="nav-btn cart-btn">CART</button>
         </div>
     </nav>
 
+    <!-- PRODUCTOS (Se llena con JS) -->
     <main class="main-content">
         <div class="product-grid"></div>
     </main>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-item-trademark">© 2025 G KRUPPE &trade;</div>
         <div class="footer-item-contact">CONTACT@PECATO.COM</div>
     </footer>
 
+    <!-- SCRIPTS -->
     <script src="src/js/main.js"></script>
     <script src="src/js/store.js"></script>
+    <script src="src/js/cart.js"></script>
 </body>
 
 </html>

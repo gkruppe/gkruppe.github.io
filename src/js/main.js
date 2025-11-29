@@ -22,33 +22,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- 2. LÓGICA DEL MENÚ DESPLEGABLE ---
-    const openBtn = document.getElementById('open-menu-btn');
-    const closeBtn = document.getElementById('close-menu-btn');
+    const openMenuBtn = document.getElementById('open-menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
     const menuOverlay = document.getElementById('menu-overlay');
 
-    if (openBtn && closeBtn && menuOverlay) {
-
-        // Abrir Menú
-        openBtn.addEventListener('click', () => {
+    if (openMenuBtn && closeMenuBtn && menuOverlay) {
+        openMenuBtn.addEventListener('click', () => {
             menuOverlay.classList.add('active');
-            // Bloquear el scroll de la página web
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden'; // Bloquear scroll
         });
 
-        // Cerrar Menú
-        closeBtn.addEventListener('click', () => {
+        closeMenuBtn.addEventListener('click', () => {
             menuOverlay.classList.remove('active');
-            // Reactivar el scroll
-            document.body.style.overflow = '';
+            document.body.style.overflow = ''; // Reactivar scroll
         });
 
-        // Cerrar al hacer clic en un enlace (opcional, para navegar)
-        const links = menuOverlay.querySelectorAll('.menu-link');
-        links.forEach(link => {
+        // Cerrar al hacer clic en un enlace
+        const menuLinks = menuOverlay.querySelectorAll('.menu-link');
+        menuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menuOverlay.classList.remove('active');
                 document.body.style.overflow = '';
             });
+        });
+    }
+
+    // --- 3. LÓGICA DEL CARRITO DESPLEGABLE ---
+    const openCartBtn = document.getElementById('open-cart-btn');
+    const closeCartBtn = document.getElementById('close-cart-btn');
+    const cartOverlay = document.getElementById('cart-overlay');
+
+    if (openCartBtn && closeCartBtn && cartOverlay) {
+        openCartBtn.addEventListener('click', () => {
+            cartOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeCartBtn.addEventListener('click', () => {
+            cartOverlay.classList.remove('active');
+            document.body.style.overflow = '';
         });
     }
 });

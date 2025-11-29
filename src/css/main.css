@@ -61,13 +61,15 @@ body {
 /* --- NAVBAR --- */
 .navbar {
     display: grid;
-    grid-template-columns: 100px 1fr 100px;
+    /* CAMBIO: Aumentamos de 100px a 140px para que quepa "CART (X)" */
+    grid-template-columns: 140px 1fr 140px;
     height: 60px;
     width: 100%;
 
     border-top: 2px solid white;
-    border-left: 2px solid white;
-    border-right: 2px solid white;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
 
     position: sticky;
     top: 0;
@@ -83,7 +85,7 @@ body {
     transition: all 0.3s ease;
 }
 
-/* FIX BORDE INFERIOR: Pseudo-elemento que dibuja la línea POR ENCIMA de todo */
+/* FIX BORDE INFERIOR */
 .navbar::after {
     content: '';
     position: absolute;
@@ -96,28 +98,18 @@ body {
     pointer-events: none;
 }
 
-/* Fix específico Safari borde izquierdo */
-@media not all and (min-resolution:.001dpcm) {
-    @supports (-webkit-appearance:none) {
-        .navbar {
-            border-left-width: 3px;
-            box-shadow: inset 1px 0 0 white;
-        }
-    }
-}
-
 .nav-item {
     display: flex;
     align-items: center;
     height: 100%;
     background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(2px);
     position: relative;
 }
 
 .nav-item.left {
-    justify-content: flex-start;
-    padding-left: 20px;
+    /* CAMBIO: Centrado el texto MENU en su espacio */
+    justify-content: center;
+    padding-left: 0;
 }
 
 .nav-item.right {
@@ -165,7 +157,8 @@ body {
 
 .marquee-content {
     display: flex;
-    width: max-content;
+    width: fit-content;
+    min-width: 100%;
     animation: marquee 40s linear infinite;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
@@ -333,70 +326,54 @@ body {
     flex-grow: 1;
 }
 
-/* --- MENÚ DESPLEGABLE (OVERLAY) - ESTILOS AÑADIDOS --- */
-.menu-overlay {
+/* --- OVERLAYS (MENÚ Y CARRITO) --- */
+.menu-overlay,
+.cart-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Fondo transparente porque usamos el pseudo-elemento para la imagen blur */
     background-color: transparent;
     z-index: 3000;
-    /* Por encima de TODO */
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    /* Estado inicial: Oculto */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-
     transition: opacity 0.4s ease, visibility 0.4s ease;
-
     overflow: hidden;
-    /* Necesario para que los bordes borrosos no se vean mal */
 }
 
-/* PSEUDO-ELEMENTO PARA EL FONDO CON BLUR */
-.menu-overlay::before {
+.menu-overlay::before,
+.cart-overlay::before {
     content: '';
     position: absolute;
-    /* Lo hacemos más grande que el contenedor para evitar bordes blancos difuminados */
     top: -20px;
     left: -20px;
     width: calc(100% + 40px);
     height: calc(100% + 40px);
-
-    /* El mismo fondo que la web pero más oscuro (0.7) */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/images/FONDO.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../assets/images/FONDO.jpg');
     background-size: cover;
     background-position: center;
-
-    /* EL EFECTO BLUR */
     filter: blur(15px);
-
     z-index: -1;
-    /* Detrás del texto */
 }
 
-/* Estado activo: Visible (se activa con JS) */
-.menu-overlay.active {
+.menu-overlay.active,
+.cart-overlay.active {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
 }
 
-/* Botón de cerrar (Arriba a la izquierda, igual que el de abrir) */
-.close-btn {
+.close-btn,
+.close-cart-btn {
     position: absolute;
     top: 0;
-    left: 0;
     height: 60px;
-    /* Misma altura que navbar */
     padding: 0 20px;
     background: transparent;
     border: none;
@@ -408,11 +385,20 @@ body {
     z-index: 3001;
 }
 
-.close-btn:hover {
+.close-btn {
+    left: 0;
+}
+
+.close-cart-btn {
+    right: 0;
+}
+
+.close-btn:hover,
+.close-cart-btn:hover {
     color: var(--color-text-muted);
 }
 
-/* Enlaces del menú */
+/* MENU */
 .menu-content {
     display: flex;
     flex-direction: column;
@@ -423,10 +409,8 @@ body {
 .menu-link {
     font-family: var(--font-heading);
     font-size: 4rem;
-    /* Texto Gigante */
     color: transparent;
     -webkit-text-stroke: 2px white;
-    /* Solo borde blanco */
     text-decoration: none;
     text-transform: uppercase;
     transition: all 0.3s ease;
@@ -435,9 +419,67 @@ body {
 
 .menu-link:hover {
     color: white;
-    /* Relleno blanco al pasar el mouse */
     -webkit-text-stroke: 0px;
     transform: scale(1.1);
+}
+
+/* CARRITO */
+.cart-content {
+    width: 100%;
+    max-width: 600px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.cart-header {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.cart-items {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-text-muted);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+}
+
+.cart-footer {
+    border-top: 2px solid white;
+    padding-top: 20px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 15px;
+    background: white;
+    color: black;
+    border: none;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.checkout-btn:hover {
+    background: #ccc;
 }
 
 @media (max-width: 768px) {
@@ -457,7 +499,6 @@ body {
         top: 50vh;
     }
 
-    /* Ajuste tamaño menú móvil */
     .menu-link {
         font-size: 2.5rem;
     }

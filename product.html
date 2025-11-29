@@ -21,14 +21,31 @@
 
 <body>
 
-    <!-- NAVBAR FIJA (Siempre visible en producto) -->
+    <!-- CART DESPLEGABLE (OVERLAY) -->
+    <div id="cart-overlay" class="cart-overlay">
+        <button id="close-cart-btn" class="close-cart-btn">CLOSE</button>
+        <div class="cart-content">
+            <div class="cart-header">YOUR CART</div>
+            <div class="cart-items">
+                <p>YOUR CART IS EMPTY</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>TOTAL</span>
+                    <span>€0.00</span>
+                </div>
+                <button class="checkout-btn">CHECKOUT</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVBAR FIJA -->
     <nav class="navbar">
         <div class="nav-item left">
             <a href="main.html" class="nav-btn menu-btn">BACK</a>
         </div>
 
         <div class="nav-center">
-            <!-- Mantenemos el marquee para darle vida -->
             <div class="marquee-container">
                 <div class="marquee-content">
                     <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
@@ -39,46 +56,43 @@
                     <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
                     <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
                     <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
-                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
-                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
                 </div>
             </div>
-            <!-- Y el logo siempre visible (Ruta ajustada) -->
-            <img src="src/assets/images/ELIPSE.png" alt="Logo Mini" class="logo-mini">
+
+            <!-- CAMBIO: Logo ahora es un enlace a home -->
+            <a href="index.html" class="logo-link">
+                <img src="src/assets/images/ELIPSE.png" alt="Logo Mini" class="logo-mini">
+            </a>
         </div>
 
         <div class="nav-item right">
-            <button class="nav-btn cart-btn">CART</button>
+            <button id="open-cart-btn" class="nav-btn cart-btn">CART (0)</button>
         </div>
     </nav>
 
     <!-- CONTENIDO DEL PRODUCTO -->
     <main class="product-container">
 
-        <!-- COLUMNA IZQUIERDA: IMAGEN -->
+        <!-- COLUMNA IZQUIERDA -->
         <section class="product-image-section">
-            <!-- Ruta ajustada a src/ -->
             <img src="src/assets/images/coche.png" alt="Camiseta Pecato"
                 onerror="this.src='https://placehold.co/600x800/111/fff?text=PRODUCT+IMAGE'">
         </section>
 
-        <!-- COLUMNA DERECHA: INFO -->
+        <!-- COLUMNA DERECHA -->
         <section class="product-details-section">
             <div class="details-header">
-                <h1 class="p-title">T-SHIRT BASIC<br>EDITION 01</h1>
-                <p class="p-price">€45.00</p>
+                <h1 class="p-title">LOADING...</h1>
+                <p class="p-price">--</p>
             </div>
 
             <div class="details-description">
-                <p></p>
+                <p>Loading details...</p>
                 <ul class="specs-list">
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <!-- JS rellena esto -->
                 </ul>
             </div>
 
-            <!-- SELECTOR DE TALLAS -->
             <div class="size-selector">
                 <div class="size-header">SELECT SIZE</div>
                 <div class="size-grid">
@@ -101,9 +115,8 @@
                 </div>
             </div>
 
-            <!-- BOTÓN DE COMPRA -->
             <div class="action-area">
-                <button class="add-to-cart-btn">ADD TO CART — €45.00</button>
+                <button class="add-to-cart-btn">ADD TO CART</button>
             </div>
         </section>
 
@@ -114,9 +127,10 @@
         <div class="footer-item-contact">CONTACT@PECATO.COM</div>
     </footer>
 
-    <!-- Script para funcionalidad dinámica -->
+    <!-- Scripts -->
+    <script src="src/js/main.js"></script>
     <script src="src/js/store.js"></script>
+    <script src="src/js/cart.js"></script>
 </body>
-
 
 </html>
