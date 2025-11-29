@@ -1,36 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Seleccionamos los elementos clave
+    // --- 1. LÓGICA DEL STICKY NAVBAR ---
     const sentinel = document.getElementById('sticky-sentinel');
     const navbar = document.getElementById('navbar');
 
-    // Verificamos que existan para evitar errores
-    if (!sentinel || !navbar) return;
-
-    // 2. Creamos el Observador (Intersection Observer)
-    // Es como un vigilante que nos avisa cuando el 'sentinel' entra o sale de la pantalla
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-
-            // LÓGICA:
-            // Si el centinela NO está visible (!isIntersecting)
-            // Y además está por ENCIMA de la pantalla (top < 0)
-            // Significa que hemos bajado haciendo scroll.
-
-            if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
-                // Estamos abajo: ¡Modo Sticky activado!
-                navbar.classList.add('stuck');
-            } else {
-                // Estamos arriba: Modo normal
-                navbar.classList.remove('stuck');
-            }
+    if (sentinel && navbar) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+                    navbar.classList.add('stuck');
+                } else {
+                    navbar.classList.remove('stuck');
+                }
+            });
+        }, {
+            threshold: 0,
+            rootMargin: "0px 0px 0px 0px"
         });
-    }, {
-        // Opciones del observador
-        threshold: 0, // Se activa apenas el pixel 0 del elemento sale
-        rootMargin: "0px 0px 0px 0px" // Sin márgenes extra
-    });
 
-    // 3. Empezamos a observar
-    observer.observe(sentinel);
+        observer.observe(sentinel);
+    }
+
+    // --- 2. LÓGICA DEL MENÚ DESPLEGABLE ---
+    const openBtn = document.getElementById('open-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    const menuOverlay = document.getElementById('menu-overlay');
+
+    if (openBtn && closeBtn && menuOverlay) {
+
+        // Abrir Menú
+        openBtn.addEventListener('click', () => {
+            menuOverlay.classList.add('active');
+            // Bloquear el scroll de la página web
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Cerrar Menú
+        closeBtn.addEventListener('click', () => {
+            menuOverlay.classList.remove('active');
+            // Reactivar el scroll
+            document.body.style.overflow = '';
+        });
+
+        // Cerrar al hacer clic en un enlace (opcional, para navegar)
+        const links = menuOverlay.querySelectorAll('.menu-link');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+    }
 });

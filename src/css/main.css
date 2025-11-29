@@ -81,10 +81,6 @@ body {
     background-attachment: fixed;
 
     transition: all 0.3s ease;
-
-    /* CAMBIO: Eliminamos el transform para restaurar la sincronización del fondo */
-    /* -webkit-transform: translateZ(0); */
-    /* transform: translateZ(0); */
 }
 
 /* FIX BORDE INFERIOR: Pseudo-elemento que dibuja la línea POR ENCIMA de todo */
@@ -101,7 +97,6 @@ body {
 }
 
 /* Fix específico Safari borde izquierdo */
-/* Este bloque se encarga de los problemas de borde en Safari sin romper el fondo */
 @media not all and (min-resolution:.001dpcm) {
     @supports (-webkit-appearance:none) {
         .navbar {
@@ -338,6 +333,113 @@ body {
     flex-grow: 1;
 }
 
+/* --- MENÚ DESPLEGABLE (OVERLAY) - ESTILOS AÑADIDOS --- */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Fondo transparente porque usamos el pseudo-elemento para la imagen blur */
+    background-color: transparent;
+    z-index: 3000;
+    /* Por encima de TODO */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* Estado inicial: Oculto */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+
+    overflow: hidden;
+    /* Necesario para que los bordes borrosos no se vean mal */
+}
+
+/* PSEUDO-ELEMENTO PARA EL FONDO CON BLUR */
+.menu-overlay::before {
+    content: '';
+    position: absolute;
+    /* Lo hacemos más grande que el contenedor para evitar bordes blancos difuminados */
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+
+    /* El mismo fondo que la web pero más oscuro (0.7) */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/images/FONDO.jpg');
+    background-size: cover;
+    background-position: center;
+
+    /* EL EFECTO BLUR */
+    filter: blur(15px);
+
+    z-index: -1;
+    /* Detrás del texto */
+}
+
+/* Estado activo: Visible (se activa con JS) */
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* Botón de cerrar (Arriba a la izquierda, igual que el de abrir) */
+.close-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px;
+    /* Misma altura que navbar */
+    padding: 0 20px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    z-index: 3001;
+}
+
+.close-btn:hover {
+    color: var(--color-text-muted);
+}
+
+/* Enlaces del menú */
+.menu-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.menu-link {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    /* Texto Gigante */
+    color: transparent;
+    -webkit-text-stroke: 2px white;
+    /* Solo borde blanco */
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.menu-link:hover {
+    color: white;
+    /* Relleno blanco al pasar el mouse */
+    -webkit-text-stroke: 0px;
+    transform: scale(1.1);
+}
+
 @media (max-width: 768px) {
     .product-grid {
         grid-template-columns: 1fr;
@@ -353,5 +455,10 @@ body {
 
     #sticky-sentinel {
         top: 50vh;
+    }
+
+    /* Ajuste tamaño menú móvil */
+    .menu-link {
+        font-size: 2.5rem;
     }
 }
