@@ -19,6 +19,8 @@
 </head>
 
 <body>
+
+    <!-- MENÚ DESPLEGABLE (OVERLAY) - Nuevo bloque -->
     <div id="menu-overlay" class="menu-overlay">
         <button id="close-menu-btn" class="close-btn">CLOSE</button>
         <nav class="menu-content">
@@ -38,12 +40,23 @@
 
     <nav class="navbar" id="navbar">
         <div class="nav-item left">
-            <button class="nav-btn menu-btn">MENU</button>
+            <!-- AÑADIDO ID: id="open-menu-btn" -->
+            <button id="open-menu-btn" class="nav-btn menu-btn">MENU</button>
         </div>
 
         <div class="nav-center">
             <div class="marquee-container">
                 <div class="marquee-content">
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
                     <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
                     <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
                     <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
@@ -60,11 +73,6 @@
     </nav>
 
     <main class="main-content">
-        <!-- 
-           AHORA ESTÁ VACÍO. 
-           JavaScript (store.js) lo rellenará automáticamente 
-           con los productos del inventario.
-        -->
         <div class="product-grid"></div>
     </main>
 
@@ -73,10 +81,7 @@
         <div class="footer-item-contact">CONTACT@PECATO.COM</div>
     </footer>
 
-    <!-- Scripts -->
-    <!-- 1. Lógica visual (Sticky Navbar) -->
     <script src="src/js/main.js"></script>
-    <!-- 2. Lógica de datos (Inventario y generación de tarjetas) -->
     <script src="src/js/store.js"></script>
 </body>
 
