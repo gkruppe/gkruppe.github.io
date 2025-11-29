@@ -1,0 +1,357 @@
+:root {
+    --color-bg: #0f0f13;
+    --color-text-main: #ffffff;
+    --color-text-muted: #a1a1aa;
+    --font-heading: 'Impact', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/images/FONDO.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    min-height: 100vh;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+}
+
+/* --- HERO --- */
+.brand-hero {
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.huge-logo {
+    width: 90%;
+    max-width: 800px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0px 10px 30px rgba(0, 0, 0, 0.6));
+}
+
+/* --- CENTINELA --- */
+#sticky-sentinel {
+    position: absolute;
+    top: 70vh;
+    height: 1px;
+    width: 100%;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    height: 60px;
+    width: 100%;
+
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/images/FONDO.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    transition: all 0.3s ease;
+
+    /* CAMBIO: Eliminamos el transform para restaurar la sincronización del fondo */
+    /* -webkit-transform: translateZ(0); */
+    /* transform: translateZ(0); */
+}
+
+/* FIX BORDE INFERIOR: Pseudo-elemento que dibuja la línea POR ENCIMA de todo */
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+    z-index: 2000;
+    pointer-events: none;
+}
+
+/* Fix específico Safari borde izquierdo */
+/* Este bloque se encarga de los problemas de borde en Safari sin romper el fondo */
+@media not all and (min-resolution:.001dpcm) {
+    @supports (-webkit-appearance:none) {
+        .navbar {
+            border-left-width: 3px;
+            box-shadow: inset 1px 0 0 white;
+        }
+    }
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+    position: relative;
+}
+
+.nav-item.left {
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+.nav-item.right {
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* --- CENTRO DINÁMICO --- */
+.nav-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    overflow: hidden;
+    position: relative;
+}
+
+/* TEXTO MARQUEE */
+.marquee-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.marquee-content {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform;
+}
+
+.marquee-content span {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: #ccc;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding-right: 2rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* LOGO MINI */
+.logo-mini {
+    height: 35px;
+    width: auto;
+    object-fit: contain;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ESTADOS DE TRANSICIÓN */
+.navbar.stuck .marquee-container {
+    opacity: 0;
+    transform: translateY(-30px);
+    pointer-events: none;
+}
+
+.navbar.stuck .logo-mini {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+/* --- PRODUCTOS Y RESTO --- */
+.main-content {
+    padding-bottom: 80px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+.product-card:nth-child(3n) {
+    border-right: none;
+}
+
+.image-container {
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-bottom: 2px solid white;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.product-card:hover .image-container img {
+    transform: scale(1.05);
+}
+
+.product-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    flex-grow: 1;
+}
+
+.product-price {
+    font-family: var(--font-body);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.btn-add {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    color: white;
+    border: none;
+    border-top: 2px solid white;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-add:hover {
+    background: white;
+    color: black;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: black;
+    color: white;
+    border: 2px solid white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 2000;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.product-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card {
+        border-right: none;
+    }
+
+    .brand-hero {
+        min-height: 50vh;
+    }
+
+    #sticky-sentinel {
+        top: 50vh;
+    }
+}

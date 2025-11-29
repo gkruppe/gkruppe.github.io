@@ -1,0 +1,279 @@
+:root {
+    --color-bg: #0f0f13;
+    --color-text-main: #ffffff;
+    --color-text-muted: #a1a1aa;
+    --font-heading: 'Impact', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --spacing-md: 1rem;
+    --navbar-height: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+
+    /* Imagen de fondo */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/images/FONDO.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* IMPORTANTE: Esto permite el truco */
+
+    min-height: 100vh;
+
+    /* Bordes laterales del cuerpo */
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+}
+
+/* --- NAVBAR (Con efecto camuflaje implementado) --- */
+.navbar {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    height: 60px;
+
+    /* BORDES COMPLETOS */
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    /* Añadido para cerrar la caja */
+    border-right: 2px solid white;
+
+    position: fixed;
+    top: 0;
+
+    /* CAMBIO 1: Usamos left/right en vez de width: 100% para evitar problemas de scrollbar */
+    left: 0;
+    right: 0;
+
+    z-index: 100;
+
+    /* CAMBIO 2: EL TRUCO DEL CAMUFLAJE */
+    /* Copiamos exactamente el fondo del body. Al ser 'fixed', se superpone perfectamente. */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../assets/images/FONDO.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+    box-sizing: border-box;
+}
+
+/* Items laterales (Menu / Cart) */
+.nav-item {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    /* Fondo sutil para mejorar lectura sobre la "máscara" del navbar */
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+}
+
+.nav-item.left {
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+.nav-item.right {
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+/* Botones de texto (MENU / CART) */
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* --- CENTRO Y LOGO --- */
+.nav-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    /* Bordes verticales internos */
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+
+    overflow: hidden;
+    position: relative;
+}
+
+.logo {
+    height: 45px;
+    width: auto;
+    position: static;
+    object-fit: contain;
+}
+
+/* --- FOOTER --- */
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    background: black;
+    /* El footer lo dejamos negro sólido */
+    color: white;
+
+    /* BORDES COMPLETOS */
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 100;
+
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- HERO --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.main-content {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: transparent;
+    width: 100%;
+    min-height: 100vh;
+    /* Aseguramos que el contenido esté en una capa inferior a la navbar */
+    position: relative;
+    z-index: 1;
+}
+
+/* --- GRILLA DE PRODUCTOS --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    width: 100%;
+}
+
+/* --- TARJETA DE PRODUCTO --- */
+.product-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    /* CAMBIO 3: Añadido fondo semitransparente para que resalten sobre el fondo */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* BORDES DE LA GRILLA */
+    border-right: 2px solid white;
+    border-bottom: 2px solid white;
+}
+
+/* Quitamos el borde derecho de cada 3er elemento */
+.product-card:nth-child(3n) {
+    border-right: none;
+}
+
+/* --- IMAGEN --- */
+.image-container {
+    width: 100%;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-bottom: 2px solid white;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .image-container img {
+    transform: scale(1.05);
+}
+
+/* --- INFO (Nombre y Precio) --- */
+.product-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.product-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 0;
+}
+
+.product-price {
+    font-family: var(--font-body);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+}
+
+/* --- BOTÓN ADD TO CART --- */
+.btn-add {
+    width: 100%;
+    padding: 1rem;
+    background: transparent;
+    color: white;
+    border: none;
+    border-top: 2px solid white;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-add:hover {
+    background: white;
+    color: black;
+    font-weight: bold;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card {
+        border-right: none;
+    }
+}
