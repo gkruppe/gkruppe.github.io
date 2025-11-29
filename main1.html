@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PECATO | Home</title>
+
+    <link rel="stylesheet" href="src/css/main.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/impact');
+    </style>
+</head>
+
+<body>
+
+    <header class="brand-hero">
+        <img src="src/assets/images/ELIPSE.png" alt="PECATO GIANT LOGO" class="huge-logo">
+    </header>
+
+    <div id="sticky-sentinel"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-item left">
+            <button class="nav-btn menu-btn">MENU</button>
+        </div>
+
+        <div class="nav-center">
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                </div>
+            </div>
+
+            <img src="src/assets/images/ELIPSE.png" alt="Logo Mini" class="logo-mini">
+        </div>
+
+        <div class="nav-item right">
+            <button class="nav-btn cart-btn">CART</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- 
+           AHORA ESTÁ VACÍO. 
+           JavaScript (store.js) lo rellenará automáticamente 
+           con los productos del inventario.
+        -->
+        <div class="product-grid"></div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-item-trademark">© 2025 G KRUPPE &trade;</div>
+        <div class="footer-item-contact">CONTACT@PECATO.COM</div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- 1. Lógica visual (Sticky Navbar) -->
+    <script src="src/js/main.js"></script>
+    <!-- 2. Lógica de datos (Inventario y generación de tarjetas) -->
+    <script src="src/js/store.js"></script>
+</body>
+
+</html>

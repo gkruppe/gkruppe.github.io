@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PECATO | Product</title>
+
+    <!-- Ruta ajustada para la raíz -->
+    <link rel="stylesheet" href="../src/css/product.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/impact');
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR FIJA (Siempre visible en producto) -->
+    <nav class="navbar">
+        <div class="nav-item left">
+            <a href="main.html" class="nav-btn menu-btn">BACK</a>
+        </div>
+
+        <div class="nav-center">
+            <!-- Mantenemos el marquee para darle vida -->
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                    <span>FREE SHIPPING WORLDWIDE • FREE SHIPPING WORLDWIDE • </span>
+                </div>
+            </div>
+            <!-- Y el logo siempre visible (Ruta ajustada) -->
+            <img src="src/assets/images/ELIPSE.png" alt="Logo Mini" class="logo-mini">
+        </div>
+
+        <div class="nav-item right">
+            <button class="nav-btn cart-btn">CART</button>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO DEL PRODUCTO -->
+    <main class="product-container">
+
+        <!-- COLUMNA IZQUIERDA: IMAGEN -->
+        <section class="product-image-section">
+            <!-- Ruta ajustada a src/ -->
+            <img src="src/assets/images/coche.png" alt="Camiseta Pecato"
+                onerror="this.src='https://placehold.co/600x800/111/fff?text=PRODUCT+IMAGE'">
+        </section>
+
+        <!-- COLUMNA DERECHA: INFO -->
+        <section class="product-details-section">
+            <div class="details-header">
+                <h1 class="p-title">T-SHIRT BASIC<br>EDITION 01</h1>
+                <p class="p-price">€45.00</p>
+            </div>
+
+            <div class="details-description">
+                <p></p>
+                <ul class="specs-list">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+
+            <!-- SELECTOR DE TALLAS -->
+            <div class="size-selector">
+                <div class="size-header">SELECT SIZE</div>
+                <div class="size-grid">
+                    <label class="size-option">
+                        <input type="radio" name="size" value="S">
+                        <span>S</span>
+                    </label>
+                    <label class="size-option">
+                        <input type="radio" name="size" value="M" checked>
+                        <span>M</span>
+                    </label>
+                    <label class="size-option">
+                        <input type="radio" name="size" value="L">
+                        <span>L</span>
+                    </label>
+                    <label class="size-option">
+                        <input type="radio" name="size" value="XL">
+                        <span>XL</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- BOTÓN DE COMPRA -->
+            <div class="action-area">
+                <button class="add-to-cart-btn">ADD TO CART — €45.00</button>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-item-trademark">© 2025 G KRUPPE &trade;</div>
+        <div class="footer-item-contact">CONTACT@PECATO.COM</div>
+    </footer>
+
+    <!-- Script para funcionalidad dinámica -->
+    <script src="src/js/store.js"></script>
+</body>
+
+</html>
