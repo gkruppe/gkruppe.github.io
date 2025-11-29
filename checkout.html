@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PECATO | Checkout</title>
+
+    <link rel="stylesheet" href="src/css/checkout.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/impact');
+    </style>
+</head>
+
+<body>
+
+    <!-- MENÚ DESPLEGABLE (OVERLAY) -->
+    <div id="menu-overlay" class="menu-overlay">
+        <button id="close-menu-btn" class="close-btn">CLOSE</button>
+        <nav class="menu-content">
+            <a href="index.html" class="menu-link">HOME</a>
+            <a href="checkout.html" class="menu-link">CHECKOUT</a>
+            <a href="#" class="menu-link">ARCHIVE</a>
+            <a href="#" class="menu-link">ABOUT</a>
+            <a href="#" class="menu-link">CONTACT</a>
+        </nav>
+    </div>
+
+    <!-- NAVBAR (CON BACK Y MENU) -->
+    <nav class="navbar">
+        <div class="nav-item left">
+            <!-- Botón BACK: Vuelve al historial o a index.html -->
+            <a href="javascript:history.back()" class="nav-btn">BACK</a>
+        </div>
+
+        <div class="nav-center">
+            <a href="index.html">
+                <img src="src/assets/images/ELIPSE.png" alt="Pecato Logo" class="logo-mini">
+            </a>
+        </div>
+
+        <div class="nav-item right">
+            <button id="open-menu-btn" class="nav-btn">MENU</button>
+        </div>
+    </nav>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="checkout-container">
+
+        <!-- COLUMNA IZQUIERDA: FORMULARIOS -->
+        <section class="checkout-form-section">
+
+            <!-- 1. CONTACTO -->
+            <div class="form-group">
+                <h2 class="form-title">01. CONTACT INFO</h2>
+                <input type="email" placeholder="EMAIL ADDRESS" class="brutal-input">
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="newsletter">
+                    <label for="newsletter">Keep me updated on news and exclusive offers</label>
+                </div>
+            </div>
+
+            <!-- 2. ENVÍO -->
+            <div class="form-group">
+                <h2 class="form-title">02. SHIPPING ADDRESS</h2>
+                <div class="input-row">
+                    <input type="text" placeholder="FIRST NAME" class="brutal-input">
+                    <input type="text" placeholder="LAST NAME" class="brutal-input">
+                </div>
+                <input type="text" placeholder="ADDRESS" class="brutal-input">
+                <input type="text" placeholder="APARTMENT, SUITE, ETC. (OPTIONAL)" class="brutal-input">
+                <div class="input-row">
+                    <input type="text" placeholder="CITY" class="brutal-input">
+                    <input type="text" placeholder="POSTAL CODE" class="brutal-input">
+                </div>
+                <input type="text" placeholder="COUNTRY" class="brutal-input">
+                <input type="tel" placeholder="PHONE" class="brutal-input">
+            </div>
+
+            <!-- 3. PAGO -->
+            <div class="form-group">
+                <h2 class="form-title">03. PAYMENT</h2>
+                <div class="payment-box">
+                    <input type="text" placeholder="CARD NUMBER" class="brutal-input">
+                    <div class="input-row">
+                        <input type="text" placeholder="MM / YY" class="brutal-input">
+                        <input type="text" placeholder="CVC" class="brutal-input">
+                    </div>
+                </div>
+            </div>
+
+            <button class="pay-btn">PAY NOW</button>
+        </section>
+
+        <!-- COLUMNA DERECHA: RESUMEN PEDIDO -->
+        <section class="order-summary-section">
+            <div class="summary-header">ORDER SUMMARY</div>
+
+            <!-- CONTENEDOR DONDE JS INYECTA LOS PRODUCTOS -->
+            <div id="checkout-items" class="summary-items">
+                <p style="padding: 20px; color: white;">Loading cart...</p>
+            </div>
+
+            <div class="summary-totals">
+                <div class="total-row">
+                    <span>SUBTOTAL</span>
+                    <span id="checkout-subtotal">€0.00</span>
+                </div>
+                <div class="total-row">
+                    <span>SHIPPING</span>
+                    <span>FREE</span>
+                </div>
+                <div class="total-row final">
+                    <span>TOTAL</span>
+                    <span id="checkout-total">€0.00</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-item-trademark">© 2025 G KRUPPE &trade;</div>
+        <div class="footer-item-contact">SECURE CHECKOUT</div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <!-- main.js para la lógica del menú desplegable -->
+    <script src="src/js/main.js"></script>
+    <!-- checkout.js para cargar el resumen del carrito -->
+    <script src="src/js/checkout.js"></script>
+</body>
+
+</html>
