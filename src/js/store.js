@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         products.forEach(product => {
             const cardHTML = `
                 <article class="product-card">
-                    <a href="product1.html?id=${product.id}" class="product-link">
+                    <a href="product.html?id=${product.id}" class="product-link">
                         <div class="image-container">
                             <img src="${product.image}" alt="${product.name}" onerror="this.src='https://placehold.co/400x500/111/fff?text=ITEM'">
                         </div>
@@ -107,4 +107,5 @@ document.addEventListener('DOMContentLoaded', () => {
             document.title = `PECATO | ${product.name}`;
         }
     }
+
 });
